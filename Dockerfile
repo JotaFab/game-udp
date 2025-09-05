@@ -15,4 +15,4 @@ copy . .
 RUN go install github.com/air-verse/air@latest
 
 
-ENTRYPOINT ["air"]
+ENTRYPOINT ["air -c config.toml"]
