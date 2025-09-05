@@ -10,9 +10,15 @@ import (
 	controlpb "game-server/proto/control"
 )
 
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true // Allow all origins, adjust as needed for security
+	},
+}
+
 func wsHandler(w http.ResponseWriter, r *http.Request) {
 
-    c, err := upgrader.Upgrade(w, r, nil)
+	c, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println("upgrade:", err)
 		return
@@ -67,4 +73,14 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+}
+
+func genToken(n int) string {
+	// Simple random token generator stub
+	const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	b := make([]byte, n)
+	for i := range b {
+		b[i] = letters[i%len(letters)]
+	}
+	return string(b)
 }
