@@ -1,6 +1,8 @@
 syntax = "proto3";
 package control;
 
+option go_package = "/proto/control";
+
 message JoinLobby {
   string player_id = 1;
 }

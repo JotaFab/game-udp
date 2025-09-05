@@ -1,6 +1,8 @@
 syntax = "proto3";
 package realtime;
 
+option go_package = "/proto/realtime";
+
 message ClientInput {
   string session_token = 1;
   uint32 seq = 2;

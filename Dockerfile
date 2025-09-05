@@ -11,9 +11,6 @@ COPY go.mod go.sum ./
 RUN go mod tidy
 copy . .
 
-RUN protoc-gen-go --go_out=. proto/control.proto
-RUN protoc-gen-go --go_out=. proto/realtime.proto
-
 
 RUN go install github.com/air-verse/air@latest
 
