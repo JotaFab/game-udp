@@ -1,0 +1,12 @@
+syntax = "proto3";
+package control;
+
+message JoinLobby {
+  string player_id = 1;
+}
+
+message StartGame {
+  int32 udp_port = 1;
+  string session_token = 2;
+  string player_id = 3;
+}

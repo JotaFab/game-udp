@@ -1,0 +1,21 @@
+
+FROM golang:latest
+
+
+
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+ENV PATH="${PATH}:/go/bin"
+
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod tidy
+copy . .
+
+RUN protoc-gen-go --go_out=. proto/control.proto
+RUN protoc-gen-go --go_out=. proto/realtime.proto
+
+
+RUN go install github.com/air-verse/air@latest
+
+
+ENTRYPOINT ["air"]
