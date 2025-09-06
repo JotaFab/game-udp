@@ -9,10 +9,10 @@ import (
 
 func main() {
     logger := log.New(os.Stdout, "[game-server] ", log.LstdFlags)
-    server, err := server.NewGameServer(logger)
+    s, err := server.NewGameServer(logger)
     if err != nil {
         logger.Fatalf("failed to start server: %v", err)
     }
-    defer server.UDPConn.Close()
-    server.Start()
+    defer s.UDPConn.Close()
+    s.Start()
 }
